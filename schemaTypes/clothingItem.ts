@@ -50,6 +50,24 @@ export const clothingItemType = defineType({
       type: 'number',
       validation: (rule) => rule.required().min(0),
     }),
+    // --- NEW RESERVATIONS ARRAY FIELD ---
+    defineField({
+      name: 'reservations',
+      title: 'Reservations',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'sessionId', type: 'string', title: 'Session ID' },
+            { name: 'quantity', type: 'number', title: 'Quantity' },
+            { name: 'reservedUntil', type: 'datetime', title: 'Reserved Until' }
+          ]
+        }
+      ],
+      description: 'Tracks all active reservations for this product.',
+    }),
+    // --- END NEW FIELD ---
     defineField({
       name: 'category',
       title: 'Category',
